@@ -9,7 +9,6 @@ public class Delay: NSObject {
 }
 
 open class Toast: Operation {
-
   // MARK: Properties
 
   @objc public var text: String? {
@@ -129,6 +128,7 @@ open class Toast: Operation {
       self.view.setNeedsLayout()
       self.view.alpha = 0
       ToastWindow.shared.addSubview(self.view)
+      ToastWindow.shared.isHidden = false
 
       UIView.animate(
         withDuration: 0.5,
@@ -169,8 +169,8 @@ open class Toast: Operation {
   }
 
   func finish() {
+    ToastWindow.shared.isHidden = true
     self.isExecuting = false
     self.isFinished = true
   }
-
 }

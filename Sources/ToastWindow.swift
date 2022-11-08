@@ -95,7 +95,6 @@ open class ToastWindow: UIWindow {
     let keyboardDidHideName = NSNotification.Name.UIKeyboardDidHide
     #endif
     self.backgroundColor = .clear
-    self.isHidden = false
     self.handleRotate(UIApplication.shared.statusBarOrientation)
 
     NotificationCenter.default.addObserver(
@@ -223,5 +222,4 @@ open class ToastWindow: UIWindow {
     }
     return nil
   }
-  
 }
