@@ -103,7 +103,6 @@ open class Toast: Operation {
   open override func cancel() {
     super.cancel()
     self.finish()
-    self.view.removeFromSuperview()
   }
 
 
@@ -151,14 +150,13 @@ open class Toast: Operation {
               self.view.alpha = 1.0001
             },
             completion: { completed in
-              self.finish()
               UIView.animate(
                 withDuration: 0.5,
                 animations: {
                   self.view.alpha = 0
                 },
                 completion: { completed in
-                  self.view.removeFromSuperview()
+                  self.finish()
                 }
               )
             }
@@ -169,7 +167,10 @@ open class Toast: Operation {
   }
 
   func finish() {
-    ToastWindow.shared.isHidden = true
+    self.view.removeFromSuperview()
+    if ToastWindow.shared.subviews.count == 0 {
+        ToastWindow.shared.isHidden = true
+    }
     self.isExecuting = false
     self.isFinished = true
   }
