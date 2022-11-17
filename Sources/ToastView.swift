@@ -191,13 +191,8 @@ open class ToastView: UIView {
       height = containerSize.height
       y = self.bottomOffsetPortrait
     } else {
-      if containerSize.width > containerSize.height {
-        width = containerSize.width
-        height = containerSize.height
-      } else {
-        width = containerSize.height
-        height = containerSize.width
-      }
+      width = containerSize.height
+      height = containerSize.width
       y = self.bottomOffsetLandscape
     }
     if #available(iOS 11.0, *), useSafeAreaForBottomOffset {
